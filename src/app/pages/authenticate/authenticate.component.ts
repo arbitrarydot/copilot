@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TeslaApiService } from 'src/app/services/tesla-api/tesla-api.service';
 
 @Component({
   selector: 'app-authenticate',
@@ -6,10 +7,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./authenticate.component.scss']
 })
 export class AuthenticateComponent implements OnInit {
+  email : string;
+  password : string;
 
-  constructor() { }
+  constructor(private teslaApi : TeslaApiService) { }
 
   ngOnInit() {
+  }
+
+  signIn() {
+    this.teslaApi.authenticatePassword(this.email,this.password)
+    .subscribe((res : any) => {
+      
+    });
   }
 
 }
