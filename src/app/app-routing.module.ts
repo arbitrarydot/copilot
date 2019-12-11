@@ -3,7 +3,9 @@ import { Routes, RouterModule } from '@angular/router';
 import { AuthenticateComponent } from './pages/authenticate/authenticate.component';
 
 const routes: Routes = [
-  { path: 'auth', component: AuthenticateComponent }
+  { path: '', redirectTo: 'auth', pathMatch: 'full'},
+  { path: 'auth', component: AuthenticateComponent },
+  { path: '**', redirectTo: 'auth' }
 ];
 
 @NgModule({
