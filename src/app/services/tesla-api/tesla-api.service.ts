@@ -12,10 +12,34 @@ const USER_AGENT = "Copilot"
   providedIn: 'root'
 })
 export class TeslaApiService {
+  private _token : string;   
 
 
   constructor(private http : HttpClient) { }
 
+
+
+
+  getTokenFromStorage() : string {
+    return localStorage.getItem('tesla-token');
+  }
+
+  setToken(pTok : string) {
+    this._token = pTok;
+  }
+
+  getToken() : string {
+    if (!this._token) {
+      let tokenInStorage = localStorage.getItem('tesla-token');
+      if (tokenInStorage) this.setToken(tokenInStorage);
+    }
+    return this._token;
+  }
+
+
+  /************************************
+   * API Calls
+   *************************************/
 
   /**
    * Attempt to authenticate with the Tesla API via email and password
@@ -33,8 +57,21 @@ export class TeslaApiService {
     });
   }
 
+  /** TODO */
   refreshToken() {
-
   }
+
+  getVehicles() : Observable<any> {
+    console.log('getVehicles')
+    return this.http.get(BASE_URI + '/api/1/vehicles', {});
+  }
+
+  getVehicleData(id : number) : Observable<any> {
+    return this.http.get(BASE_URI + `/api/1/vehicles/${id}/vehicle_data`, {});
+  }
+
+
+
+
 
 }
