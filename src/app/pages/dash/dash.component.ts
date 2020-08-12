@@ -8,24 +8,24 @@ import { CarService } from 'src/app/services/car/car.service';
   styleUrls: ['./dash.component.scss']
 })
 export class DashComponent implements OnInit {
-  public vehicles;
-  public selectedVehicle : number;
+  vehicles: any;
+  selectedVehicle : number;
 
   constructor(private tesla : TeslaApiService,
               public  car   : CarService) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.getVehicles();
   }
 
-  getVehicles() {
+  getVehicles(): void {
     this.tesla.getVehicles().subscribe((res : any) => {
       this.vehicles = res.response;
-      if (this.vehicles.length = 1) {
+      if (this.vehicles.length === 1) {
         this.selectedVehicle = this.vehicles[0].vehicle_id;
         // this.car.setId(this.selectedVehicle);
       }
-    })
+    });
   }
 
 }

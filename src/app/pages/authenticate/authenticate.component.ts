@@ -12,13 +12,14 @@ export class AuthenticateComponent implements OnInit {
 
   constructor(private teslaApi : TeslaApiService) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
+    // empty.
   }
 
-  signIn() {
-    this.teslaApi.authenticatePassword(this.email,this.password)
-    .subscribe((res : any) => {
-      
+  signIn(): void {
+    this.teslaApi.authenticatePassword(this.email, this.password)
+    .subscribe(_ => {
+        // no-op.
     });
   }
 
