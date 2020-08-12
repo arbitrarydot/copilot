@@ -23,7 +23,7 @@ export class DashComponent implements OnInit {
       this.vehicles = res.response;
       if (this.vehicles.length = 1) {
         this.selectedVehicle = this.vehicles[0].vehicle_id;
-        this.car.setId(this.selectedVehicle);
+        // this.car.setId(this.selectedVehicle);
       }
     })
   }

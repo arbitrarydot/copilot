@@ -7,7 +7,11 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AuthenticateComponent } from './pages/authenticate/authenticate.component';
 
-import {MatButtonModule, MatToolbarModule, MatInputModule, MatCardModule, MatSelectModule} from '@angular/material';
+import { MatButtonModule } from '@angular/material/button';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatInputModule } from '@angular/material/input';
+import { MatCardModule } from '@angular/material/card';
+import { MatSelectModule } from '@angular/material/select'
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { DashComponent } from './pages/dash/dash.component';
 
@@ -27,7 +31,7 @@ import { TeslaApiInterceptor } from './interceptors/tesla-api.interceptor';
     MatToolbarModule,
     MatInputModule,
     MatCardModule,
-    FormsModule, 
+    FormsModule,
     MatSelectModule,
     HttpClientModule,
   ],
@@ -36,7 +40,6 @@ import { TeslaApiInterceptor } from './interceptors/tesla-api.interceptor';
       provide: HTTP_INTERCEPTORS,
       useClass: TeslaApiInterceptor,
       multi: true
-
     }
   ],
   bootstrap: [AppComponent]

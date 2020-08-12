@@ -1,7 +1,6 @@
 <mat-form-field>
  <mat-label>Selected Car</mat-label>
-  <mat-select mat-stroked-button #vehicleSelect [(ngModel)]="selectedVehicle"> 
+  <mat-select mat-stroked-button #vehicleSelect [(ngModel)]="selectedVehicle">
     <mat-option *ngFor="let vehicle of vehicles" [value]="vehicle.vehicle_id">{{vehicle.display_name}}</mat-option>
   </mat-select>
 </mat-form-field>
-<!-- <pre>{{vehicles | json}}</pre> -->
