@@ -4,7 +4,7 @@ import { AuthenticateComponent } from './pages/authenticate/authenticate.compone
 import { DashComponent } from './pages/dash/dash.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'auth', pathMatch: 'full'},
+  { path: '', redirectTo: 'auth', pathMatch: 'full' },
   { path: 'auth', component: AuthenticateComponent },
   { path: 'dash', component: DashComponent },
   { path: '**', redirectTo: 'auth' }

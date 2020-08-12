@@ -9,9 +9,7 @@ import { Router } from '@angular/router';
 export class AppComponent {
   title = 'copilot';
 
-  constructor(private router : Router) {
-
-  }
+  constructor(private router : Router) { }
 
   shouldShowToolbar() : boolean {
     return !this.router.url.endsWith('auth');

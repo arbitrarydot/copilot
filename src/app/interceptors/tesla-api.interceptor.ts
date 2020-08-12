@@ -9,11 +9,10 @@ export class TeslaApiInterceptor implements HttpInterceptor {
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         // add authorization header with basic auth credentials if available
-        const userToken = this.tesla.getToken();
-        console.log(request);
+        const userToken: any = this.tesla.getToken();
         if (userToken) {
             request = request.clone({
-                setHeaders: { 
+                setHeaders: {
                     Authorization: `Bearer ${userToken}`
                 }
             });
