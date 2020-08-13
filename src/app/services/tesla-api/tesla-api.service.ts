@@ -9,11 +9,11 @@ import { Observable } from 'rxjs';
 })
 export class TeslaApiService {
 
-  private static readonly baseUrl = `/tesla-api`;
-  private static readonly clientId = `81527cff06843c8634fdc09e8ac0abefb46ac849f38fe1e431c2ef2106796384`;
-  private static readonly clientSecret = `c7257eb71a564034f9419ee651c7d0e5f7aa6bfbd18bafb5c5c033b093bb2fa3`;
-  private static readonly userAgent = `Copilot`;
-  private static readonly authEndpoint = `${TeslaApiService.baseUrl}/oauth/token`;
+  private static readonly baseUrl: string = `/tesla-api`;
+  private static readonly clientId: string = `81527cff06843c8634fdc09e8ac0abefb46ac849f38fe1e431c2ef2106796384`;
+  private static readonly clientSecret: string = `c7257eb71a564034f9419ee651c7d0e5f7aa6bfbd18bafb5c5c033b093bb2fa3`;
+  private static readonly userAgent: string = `Copilot`;
+  private static readonly authEndpoint: string = `${TeslaApiService.baseUrl}/oauth/token`;
 
   private _token : string;
 

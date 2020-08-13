@@ -7,7 +7,6 @@ export interface Subscription {
   expires : Date
 }
 
-
 @Injectable({
   providedIn: 'root'
 })
