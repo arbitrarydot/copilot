@@ -5,19 +5,19 @@ import { TeslaApiService } from '../services/tesla-api/tesla-api.service';
 
 @Injectable()
 export class TeslaApiInterceptor implements HttpInterceptor {
-    constructor(private tesla : TeslaApiService) { }
+	constructor(private tesla: TeslaApiService) {}
 
-    intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        // add authorization header with basic auth credentials if available
-        const userToken: any = this.tesla.getToken();
-        if (userToken) {
-            request = request.clone({
-                setHeaders: {
-                    Authorization: `Bearer ${userToken}`
-                }
-            });
-        }
+	intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+		// add authorization header with basic auth credentials if available
+		const userToken: any = this.tesla.getToken();
+		if (userToken) {
+			request = request.clone({
+				setHeaders: {
+					Authorization: `Bearer ${userToken}`,
+				},
+			});
+		}
 
-        return next.handle(request);
-    }
+		return next.handle(request);
+	}
 }

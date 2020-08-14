@@ -4,14 +4,14 @@ import { AuthenticateComponent } from './pages/authenticate/authenticate.compone
 import { DashComponent } from './pages/dash/dash.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'auth', pathMatch: 'full' },
-  { path: 'auth', component: AuthenticateComponent },
-  { path: 'dash', component: DashComponent },
-  { path: '**', redirectTo: 'auth' }
+	{ path: '', redirectTo: 'auth', pathMatch: 'full' },
+	{ path: 'auth', component: AuthenticateComponent },
+	{ path: 'dash', component: DashComponent },
+	{ path: '**', redirectTo: 'auth' },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+	imports: [RouterModule.forRoot(routes)],
+	exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
