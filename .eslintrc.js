@@ -244,7 +244,7 @@ module.exports = {
               'variableDeclaration': true,
               'objectDestructuring': false,
               'parameter': true,
-              'propertyDeclaration': false,
+              'propertyDeclaration': true,
               'variableDeclarationIgnoreFunction': false
           }
       ],
