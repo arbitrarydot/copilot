@@ -1,35 +1,37 @@
-import { TestBed, async } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
+
+import { TestBed, async, ComponentFixture } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import { NO_ERRORS_SCHEMA } from '@angular/compiler';
+import { Component } from '@angular/core';
 
 describe('AppComponent', () => {
+
+  @Component({ template: '<h1>🔥🔥🔥 YEEEET 🔥🔥🔥</h1>' })
+  class FakeRouteOutletComponent { }
+
+  @Component({ template: '<p>nothing important</p>' })
+  class DummyComponent { }
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      declarations: [AppComponent, FakeRouteOutletComponent, DummyComponent],
+      schemas: [NO_ERRORS_SCHEMA],
       imports: [
-        RouterTestingModule
-      ],
-      declarations: [
-        AppComponent
+        RouterTestingModule.withRoutes([
+          { path: 'route1', component: FakeRouteOutletComponent, data: { title: '🔥🔥🔥 YEEEET 🔥🔥🔥' } },
+          { path: 'route2', component: DummyComponent, data: { title: undefined } },
+          { path: 'route3', component: DummyComponent, data: { title: 'NOT YEET' } },
+        ])
       ],
     }).compileComponents();
+
   }));
 
-  it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
+  it('Should create the app', () => {
+    const fixture: ComponentFixture<AppComponent> = TestBed.createComponent(AppComponent);
+    const app: AppComponent = fixture.componentInstance;
     expect(app).toBeTruthy();
   });
-
-  it(`should have as title 'copilot'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('copilot');
-  });
-
-  it('should render title in a h1 tag', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('Welcome to copilot!');
-  });
 });
+
