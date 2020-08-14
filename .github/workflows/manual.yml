@@ -2,13 +2,7 @@ name: Copilot Continious Integration
 
 on:
   push:
-    branches:
-      - master
-      - develop
   pull_request:
-    branches:
-      - master
-      - develop
   release:
     types:
       - created
