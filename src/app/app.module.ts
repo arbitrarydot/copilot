@@ -18,30 +18,26 @@ import { DashComponent } from './pages/dash/dash.component';
 import { TeslaApiInterceptor } from './interceptors/tesla-api.interceptor';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    AuthenticateComponent,
-    DashComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    MatButtonModule,
-    MatToolbarModule,
-    MatInputModule,
-    MatCardModule,
-    FormsModule,
-    MatSelectModule,
-    HttpClientModule,
-  ],
-  providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: TeslaApiInterceptor,
-      multi: true
-    }
-  ],
-  bootstrap: [AppComponent]
+	declarations: [AppComponent, AuthenticateComponent, DashComponent],
+	imports: [
+		BrowserModule,
+		AppRoutingModule,
+		BrowserAnimationsModule,
+		MatButtonModule,
+		MatToolbarModule,
+		MatInputModule,
+		MatCardModule,
+		FormsModule,
+		MatSelectModule,
+		HttpClientModule,
+	],
+	providers: [
+		{
+			provide: HTTP_INTERCEPTORS,
+			useClass: TeslaApiInterceptor,
+			multi: true,
+		},
+	],
+	bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

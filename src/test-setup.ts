@@ -13,31 +13,31 @@ import 'jest-preset-angular';
 // import $ from 'jquery';
 // global.$ = global.jQuery = $;
 Object.defineProperty(document, 'doctype', {
-  value: '<!DOCTYPE html>'
+	value: '<!DOCTYPE html>',
 });
 
 Object.defineProperty(window, 'getComputedStyle', {
-  value: () => {
-      return {
-          display: 'none',
-          appearance: ['-webkit-appearance']
-      };
-  }
+	value: () => {
+		return {
+			display: 'none',
+			appearance: ['-webkit-appearance'],
+		};
+	},
 });
 
 Object.defineProperty(document.body.style, 'transform', {
-  value: () => {
-      return {
-          enumerable: true,
-          configurable: true,
-      };
-  },
+	value: () => {
+		return {
+			enumerable: true,
+			configurable: true,
+		};
+	},
 });
 
 Object.defineProperty(window, 'getComputedStyle', {
-  value: () => ({
-      getPropertyValue: (_: any) => {
-          return '';
-      }
-  })
+	value: () => ({
+		getPropertyValue: (_: any) => {
+			return '';
+		},
+	}),
 });

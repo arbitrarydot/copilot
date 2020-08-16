@@ -1,9 +1,11 @@
-{ 
-    "/tesla-api/*" : {
-        "target": "https://owner-api.teslamotors.com",
-        "secure": false,
-        "logLevel": "debug",
-        "changeOrigin": true,
-        "pathRewrite": {"^/tesla-api" : ""}
-    }
+{
+	"/tesla-api/*": {
+		"target": "https://owner-api.teslamotors.com",
+		"secure": false,
+		"logLevel": "debug",
+		"changeOrigin": true,
+		"pathRewrite": {
+			"^/tesla-api": ""
+		}
+	}
 }
