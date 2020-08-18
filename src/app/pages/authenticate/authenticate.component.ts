@@ -1,24 +1,1 @@
-import { Component, OnInit } from '@angular/core';
-import { TeslaApiService } from 'src/app/services/tesla-api/tesla-api.service';
-
-@Component({
-	selector: 'app-authenticate',
-	templateUrl: './authenticate.component.html',
-	styleUrls: ['./authenticate.component.scss'],
-})
-export class AuthenticateComponent implements OnInit {
-	email: string;
-	password: string;
-
-	constructor(private teslaApi: TeslaApiService) {}
-
-	ngOnInit(): void {
-		// empty.
-	}
-
-	signIn(): void {
-		this.teslaApi.authenticatePassword(this.email, this.password).subscribe(_ => {
-			// no-op.
-		});
-	}
-}
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';import { LoginService } from '../../services/login/login.service';import { FormGroup, FormBuilder, Validators } from '@angular/forms';@Component({	selector: 'app-authenticate',	templateUrl: './authenticate.component.html',	styleUrls: ['./authenticate.component.scss'],	changeDetection: ChangeDetectionStrategy.OnPush,})export class AuthenticateComponent implements OnInit {	form: FormGroup;	private readonly minEmailLength: number = 1;	private readonly minPasswordLength: number = 1;	private readonly maxPasswordLength: number = 12;	// I'm lazy and just used stack overflow. It's like the crutch that's holding up my career.	// https://stackoverflow.com/questions/3131025/strong-password-regex.	private readonly strongPasswordRegex: RegExp = /^(?=.*[A-Z])(?=.*\d)(?!.*(.)\1\1)[a-zA-Z0-9@]{6,12}$/;	constructor(private loginService: LoginService, private formBuilder: FormBuilder) {}	ngOnInit(): void {		this.form = this.formBuilder.group({			email: [				null,				Validators.compose([Validators.required, Validators.email, Validators.minLength(this.minEmailLength)]),			],			password: [				null,				Validators.compose([					Validators.required,					Validators.minLength(this.minPasswordLength),					Validators.maxLength(this.maxPasswordLength),					Validators.pattern(this.strongPasswordRegex),				]),			],		});	}	login(): void {		this.loginService.loginWithGoogle();	}	signIn(): void {		// shouldn't be able to access this method as the button will be disabled if the form is invalid.		const { email, password } = this.form.value;		this.loginService.loginWithEmailAndPassword(email, password);	}}
