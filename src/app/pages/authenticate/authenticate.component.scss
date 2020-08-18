@@ -1,16 +1,10 @@
 .login-section {
 	display: flex;
-	flex-direction: column;
+	flex-direction: row;
 	align-items: center;
+	align-content: center;
+	align-self: center;
+	justify-content: center;
 	height: 100vh;
 	padding-top: 20vh;
-}
-
-mat-card.login-card {
-	margin-top: 16px;
-	margin-bottom: 32px;
-}
-
-mat-card.login-desc-card {
-	max-width: 201px;
 }

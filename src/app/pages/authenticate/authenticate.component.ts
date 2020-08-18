@@ -1,1 +1,69 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';import { LoginService } from '../../services/login/login.service';import { FormGroup, FormBuilder, Validators } from '@angular/forms';@Component({	selector: 'app-authenticate',	templateUrl: './authenticate.component.html',	styleUrls: ['./authenticate.component.scss'],	changeDetection: ChangeDetectionStrategy.OnPush,})export class AuthenticateComponent implements OnInit {	form: FormGroup;	private readonly minEmailLength: number = 1;	private readonly minPasswordLength: number = 1;	private readonly maxPasswordLength: number = 12;	// I'm lazy and just used stack overflow. It's like the crutch that's holding up my career.	// https://stackoverflow.com/questions/3131025/strong-password-regex.	private readonly strongPasswordRegex: RegExp = /^(?=.*[A-Z])(?=.*\d)(?!.*(.)\1\1)[a-zA-Z0-9@]{6,12}$/;	constructor(private loginService: LoginService, private formBuilder: FormBuilder) {}	ngOnInit(): void {		this.form = this.formBuilder.group({			email: [				null,				Validators.compose([Validators.required, Validators.email, Validators.minLength(this.minEmailLength)]),			],			password: [				null,				Validators.compose([					Validators.required,					Validators.minLength(this.minPasswordLength),					Validators.maxLength(this.maxPasswordLength),					Validators.pattern(this.strongPasswordRegex),				]),			],		});	}	login(): void {		this.loginService.loginWithGoogle();	}	signIn(): void {		// shouldn't be able to access this method as the button will be disabled if the form is invalid.		const { email, password } = this.form.value;		this.loginService.loginWithEmailAndPassword(email, password);	}}
+import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
+import { trigger, transition, style, animate, keyframes } from '@angular/animations';
+// animations: [
+//   trigger('fadeIn', [
+//       transition(':enter', [
+//           style({ opacity: 0 }),
+//           animate(250, keyframes(KeyFrames.fadeIn)),
+//       ]),
+//       transition(':leave', [
+//           style({ opacity: 1 }),
+//           animate(250, keyframes(KeyFrames.fadeOut))
+//       ])
+//   ])
+// ]
+@Component({
+	selector: 'app-authenticate',
+	templateUrl: './authenticate.component.html',
+	styleUrls: ['./authenticate.component.scss'],
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	animations: [
+		trigger('login', [
+			transition(':enter', [
+				animate(
+					250,
+					keyframes([
+						style({ opacity: 0, transform: 'translate3d(-300%, 0, 0)', offset: 0 }),
+						style({ opacity: 1, transform: 'translate3d(0, 0, 0)', offset: 1 }),
+					])
+				),
+			]),
+			transition(':leave', [
+				animate(
+					250,
+					keyframes([
+						style({ opacity: 0, transform: 'translate3d(0, 0, 0)', offset: 0 }),
+						style({ opacity: 1, transform: 'translate3d(-300%, 0, 0)', offset: 1 }),
+					])
+				),
+			]),
+		]),
+		trigger('create', [
+			transition(':enter', [
+				animate(
+					250,
+					keyframes([
+						style({ opacity: 0, transform: 'translate3d(300%, 0, 0)', offset: 0 }),
+						style({ opacity: 1, transform: 'translate3d(0, 0, 0)', offset: 1 }),
+					])
+				),
+			]),
+			transition(':leave', [
+				animate(
+					250,
+					keyframes([
+						style({ opacity: 0, transform: 'translate3d(0, 0, 0)', offset: 0 }),
+						style({ opacity: 1, transform: 'translate3d(300%, 0, 0)', offset: 1 }),
+					])
+				),
+			]),
+		]),
+	],
+})
+export class AuthenticateComponent implements OnInit {
+	isLogin: boolean = true;
+
+	ngOnInit(): void {
+		setTimeout(() => (this.isLogin = false), 5000);
+	}
+}
