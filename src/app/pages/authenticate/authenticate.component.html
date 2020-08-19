@@ -1,4 +1,12 @@
-<div class="login-section">
-	<app-credentials *ngIf="isLogin === true" [isLogin]="isLogin" @login></app-credentials>
-	<app-credentials *ngIf="isLogin === false" [isLogin]="isLogin" @create> </app-credentials>
+<div class="d-grid">
+	<div class="selector">
+		<mat-slide-toggle [labelPosition]="'before'" [color]="'warn'" (toggleChange)="toggleChanged()">
+			{{ toggleName }}
+		</mat-slide-toggle>
+	</div>
+	<div class="login-section">
+		<app-credentials *ngIf="isLogin" [isLogin]="isLogin" class="d-absolute" @login> </app-credentials>
+		<app-credentials *ngIf="isLogin === false" [isLogin]="isLogin" class="d-absolute" @create> </app-credentials>
+	</div>
+	<div></div>
 </div>

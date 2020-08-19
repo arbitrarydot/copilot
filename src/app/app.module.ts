@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AuthenticateComponent } from './pages/authenticate/authenticate.component';
 
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatInputModule } from '@angular/material/input';
@@ -29,6 +30,7 @@ import { CredentialsComponent } from './pages/authenticate/credentials/credentia
 		AppRoutingModule,
 		BrowserAnimationsModule,
 		MatButtonModule,
+		MatSlideToggleModule,
 		MatToolbarModule,
 		MatInputModule,
 		MatCardModule,

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { auth } from 'firebase';
-import { defer, of, EMPTY } from 'rxjs';
+import { defer, EMPTY } from 'rxjs';
 import { first, catchError, tap } from 'rxjs/operators';
 
 @Injectable({
@@ -14,11 +14,11 @@ export class LoginService {
 		defer(() => this.angularFireAuth.signInWithPopup(new auth.GoogleAuthProvider()))
 			.pipe(
 				first(),
-				tap((res: auth.UserCredential) => {
-					console.log(res);
+				tap((_res: auth.UserCredential) => {
+					// do something with the result.
 				}),
-				catchError((error: any) => {
-					console.log(error);
+				catchError((_error: any) => {
+					// tell the user they messed up.
 					return EMPTY;
 				})
 			)
@@ -29,11 +29,11 @@ export class LoginService {
 		defer(() => this.angularFireAuth.signInWithEmailAndPassword(email, password))
 			.pipe(
 				first(),
-				tap((res: auth.UserCredential) => {
-					console.log(res);
+				tap((_res: auth.UserCredential) => {
+					// do something with the result.
 				}),
-				catchError((error: any) => {
-					console.log(error);
+				catchError((_error: any) => {
+					// tell the user they messed up.
 					return EMPTY;
 				})
 			)
@@ -44,11 +44,11 @@ export class LoginService {
 		defer(() => this.angularFireAuth.createUserWithEmailAndPassword(email, password))
 			.pipe(
 				first(),
-				tap((res: auth.UserCredential) => {
-					console.log(res);
+				tap((_res: auth.UserCredential) => {
+					// do something with the result.
 				}),
-				catchError((error: any) => {
-					console.log(error);
+				catchError((_error: any) => {
+					// tell the user they messed up.
 					return EMPTY;
 				})
 			)

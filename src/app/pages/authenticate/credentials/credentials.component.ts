@@ -43,7 +43,6 @@ export class CredentialsComponent implements OnInit {
 				Validators.minLength(this.minPasswordLength),
 				Validators.maxLength(this.maxPasswordLength),
 				Validators.pattern(this.strongPasswordRegex),
-				this.retypedPasswordValidator,
 			]),
 		],
 	};
@@ -54,7 +53,9 @@ export class CredentialsComponent implements OnInit {
 		if (this.isLogin === true) {
 			this.form = this.formBuilder.group(this.loginGroup);
 		} else {
-			this.form = this.formBuilder.group(this.createGroup);
+			this.form = this.formBuilder.group(this.createGroup, {
+				validators: this.isLogin,
+			});
 		}
 	}
 
@@ -72,10 +73,14 @@ export class CredentialsComponent implements OnInit {
 		}
 	}
 
-	retypedPasswordValidator(control: AbstractControl): { [key: string]: any } | null {
-		const originalPassword: string = get(this, 'form.value.password', null);
-		const retypedPassword: string = get(this, 'form.value.retypedPassword', null);
+	googleSignIn(): void {
+		this.loginService.loginWithGoogle();
+	}
 
-		return originalPassword === retypedPassword ? { noPasswordMatch: { value: control.value } } : null;
+	checkPasswords(group: FormGroup): { [key: string]: any } | null {
+		const pass: string = group.get('password').value;
+		const confirmPass: string = group.get('retypedPassword').value;
+
+		return pass === confirmPass ? null : { notSame: true };
 	}
 }
