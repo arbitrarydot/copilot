@@ -4,6 +4,7 @@ import { AuthenticateComponent } from './authenticate.component';
 import { Observable, of } from 'rxjs';
 import { TeslaApiService } from '../../services/tesla-api/tesla-api.service';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('AuthenticateComponent', () => {
 	let component: AuthenticateComponent;
@@ -32,6 +33,7 @@ describe('AuthenticateComponent', () => {
 	beforeEach(async () => {
 		await TestBed.configureTestingModule({
 			schemas: [NO_ERRORS_SCHEMA],
+			imports: [NoopAnimationsModule],
 			providers: [{ provide: TeslaApiService, useValue: teslaApiService }],
 			declarations: [AuthenticateComponent],
 		}).compileComponents();
