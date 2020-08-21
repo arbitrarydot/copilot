@@ -1,4 +1,4 @@
-name: Copilot Continious Integration
+name: Copilot Continuous Integration
 
 on:
   push:
